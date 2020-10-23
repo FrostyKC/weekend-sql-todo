@@ -42,6 +42,23 @@ app.post('/todo', (req, res) => {
     });
 });
 
+app.delete('/todo/:id', (req, res) => {
+  // req.params is {} { id: '' }
+  const todoId = req.params.id;
+  const queryText = `DELETE FROM "To-Do" WHERE id=$1;`;
+  const queryArrayData = [todoId];
+
+  pool
+    .query(queryText, queryArrayData)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
 // Start listening for requests on a specific port
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
