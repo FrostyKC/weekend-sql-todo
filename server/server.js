@@ -26,10 +26,10 @@ app.get('/todo', (req, res) => {
 
 app.post('/todo', (req, res) => {
   const todoData = req.body;
-  const queryText = `INSERT INTO "To-Do" ("task")
-  VALUES ($1);`;
+  const queryText = `INSERT INTO "To-Do" ("task", "task_completed")
+  VALUES ($1, $2);`;
 
-  const queryArray = [todoData.task];
+  const queryArray = [todoData.task, todoData.task_completed];
 
   pool
     .query(queryText, queryArray)
