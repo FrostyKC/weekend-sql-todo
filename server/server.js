@@ -11,7 +11,8 @@ app.use(express.static('server/public'));
 // ROUTES
 
 app.get('/todo', (req, res) => {
-  const queryText = 'SELECT * FROM "To-Do";';
+  const queryText =
+    'SELECT * FROM "To-Do" ORDER BY "task_completed", "id" ASC;';
 
   pool
     .query(queryText)
