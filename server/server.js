@@ -59,6 +59,22 @@ app.delete('/todo/:id', (req, res) => {
     });
 });
 
+app.put('/todo/task_completed/:id', (req, res) => {
+  const newTodoInfo = req.body;
+  const queryText = `UPDATE "To-Do" SET task_completed=$1 WHERE id=$2;`;
+  const queryArray = [newTodoInfo.task_completed, req.params.id];
+
+  pool
+    .query(queryText, queryArray)
+    .then((dbResponse) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.warning(err);
+      res.sendStatus(500);
+    });
+});
+
 // Start listening for requests on a specific port
 app.listen(PORT, () => {
   console.log('listening on port', PORT);
