@@ -16,8 +16,25 @@ app.get('/todo', (req, res) => {
   pool
     .query(queryText)
     .then((dbResponse) => {
-      console.log(dbResponse);
       res.send(dbResponse.rows);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(500);
+    });
+});
+
+app.post('/todo', (req, res) => {
+  const todoData = req.body;
+  const queryText = `INSERT INTO "To-Do" ("task")
+  VALUES ($1);`;
+
+  const queryArray = [todoData.task];
+
+  pool
+    .query(queryText, queryArray)
+    .then((dbResponse) => {
+      res.sendStatus(201);
     })
     .catch((err) => {
       console.log(err);
