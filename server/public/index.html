@@ -3,10 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>To-Do List</title>
     <script src="vendors/jquery.min.js"></script>
     <script src="scripts/client.js" charset="utf-8"></script>
     <link rel="stylesheet" href="styles/style.css" />
   </head>
-  <body></body>
+  <body>
+    <div>
+      <h2>Add a task to do</h2>
+      <input type="text" id="taskInput" placeholder="Task to-do" />
+      <button type="button" id="addButton">Add Task</button>
+    </div>
+    <div>
+      <h2>To-Do List</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Task</th>
+            <th>Completed</th>
+            <th>Update</th>
+            <th>Delete</th>
+          </tr>
+        </thead>
+        <tbody id="viewTodo"></tbody>
+      </table>
+    </div>
+  </body>
 </html>
