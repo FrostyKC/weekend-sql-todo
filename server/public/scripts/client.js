@@ -5,6 +5,7 @@ function handleReady() {
 
   $('#addButton').on('click', handleAdd);
   $('#viewTodo').on('click', '.js-btn-update', updateTask);
+  $('#viewTodo').on('click', '.js-btn-delete', deleteTask);
   getTaskData();
 }
 
@@ -55,6 +56,21 @@ function updateTask() {
     transfer = true;
   }
   updateCompletion(id, transfer);
+}
+
+function deleteTask() {
+  const id = $(this).data('id');
+  $.ajax({
+    method: 'DELETE',
+    url: `/todo/${id}`,
+  })
+    .then((deleteMessage) => {
+      getTaskData();
+    })
+    .catch((err) => {
+      console.log(err);
+      alert('There was a problem with DELETE');
+    });
 }
 
 function updateCompletion(id, transfer) {
