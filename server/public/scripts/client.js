@@ -11,7 +11,7 @@ function handleAdd() {
   console.log('Add clicked');
   const task = {
     task: $('#taskInput').val(),
-    task_completed: 'No',
+    task_completed: false,
   };
 
   postTask(task);
@@ -49,15 +49,27 @@ function render(todoList) {
   $('#viewTodo').empty();
 
   for (let task of todoList) {
-    $('#viewTodo').append(`
-    <tr>
+    if (task.task_completed === false) {
+      $('#viewTodo').append(`
+    <tr class="taskFalse">
       <td>${task.task}</td>
-      <td>${task.task_completed}</td>
+      <td>No</td>
       <td><button class="js-btn-update" data-id="${task.id}" data-completed="${task.task_completed}">
-      Update</button></td>
+      Complete</button></td>
       <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
     </tr>
     `);
+    } else {
+      $('#viewTodo').append(`
+    <tr class="taskTrue">
+      <td>${task.task}</td>
+      <td>Yes</td>
+      <td><button class="js-btn-update" data-id="${task.id}" data-completed="${task.task_completed}">
+      Complete</button></td>
+      <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
+    </tr>
+    `);
+    }
   }
 }
 
