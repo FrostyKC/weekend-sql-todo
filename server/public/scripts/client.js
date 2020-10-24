@@ -33,18 +33,22 @@ function getTaskData() {
 }
 
 function postTask(task) {
-  $.ajax({
-    type: 'POST',
-    url: '/todo',
-    data: task,
-  })
-    .then(function (response) {
-      getTaskData();
+  if (task.task) {
+    $.ajax({
+      type: 'POST',
+      url: '/todo',
+      data: task,
     })
-    .catch(function (err) {
-      console.log(err);
-      alert('something went wrong in POST');
-    });
+      .then(function (response) {
+        getTaskData();
+      })
+      .catch(function (err) {
+        console.log(err);
+        alert('something went wrong in POST');
+      });
+  } else {
+    alert('Enter task!');
+  }
 }
 
 function updateTask() {

@@ -31,15 +31,19 @@ app.post('/todo', (req, res) => {
 
   const queryArray = [todoData.task, todoData.task_completed];
 
-  pool
-    .query(queryText, queryArray)
-    .then((dbResponse) => {
-      res.sendStatus(201);
-    })
-    .catch((err) => {
-      console.log(err);
-      res.sendStatus(500);
-    });
+  if (todoData.task) {
+    pool
+      .query(queryText, queryArray)
+      .then((dbResponse) => {
+        res.sendStatus(201);
+      })
+      .catch((err) => {
+        console.log(err);
+        res.sendStatus(500);
+      });
+  } else {
+    res.sendStatus(400);
+  }
 });
 
 app.delete('/todo/:id', (req, res) => {
