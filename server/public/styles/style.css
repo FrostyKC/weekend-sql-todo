@@ -1,3 +1,38 @@
 .taskTrue {
   background-color: lightgreen;
+  color: black;
+}
+
+.taskFalse {
+  color: red;
+}
+
+body {
+  background-color: black;
+  color: aliceblue;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+table {
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.input {
+  margin-left: 25px;
+}
+
+.list {
+  text-align: center;
+}
+
+table td,
+th {
+  text-align: center;
+  border: 1px solid whitesmoke;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 35px;
+  padding-right: 35px;
 }
