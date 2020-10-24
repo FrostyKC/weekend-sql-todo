@@ -91,7 +91,7 @@ function render(todoList) {
       <td>${task.task}</td>
       <td>Yes</td>
       <td><button class="js-btn-update" data-id="${task.id}" data-completed="${task.task_completed}">
-      Complete</button></td>
+      Uncomplete</button></td>
       <td><button class="js-btn-delete" data-id="${task.id}">Delete</button></td>
     </tr>
     `);
