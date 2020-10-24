@@ -4,6 +4,7 @@ function handleReady() {
   console.log('ready');
 
   $('#addButton').on('click', handleAdd);
+  $('#viewTodo').on('click', '.js-btn-update', updateTask);
   getTaskData();
 }
 
@@ -42,6 +43,31 @@ function postTask(task) {
     .catch(function (err) {
       console.log(err);
       alert('something went wrong in POST');
+    });
+}
+
+function updateTask() {
+  const id = $(this).data('id');
+  let transfer = $(this).data('completed');
+  if (transfer) {
+    transfer = false;
+  } else {
+    transfer = true;
+  }
+  updateCompletion(id, transfer);
+}
+
+function updateCompletion(id, transfer) {
+  $.ajax({
+    url: `/todo/task_completed/${id}`,
+    type: 'PUT',
+    data: { task_completed: transfer },
+  })
+    .then(() => {
+      getTaskData();
+    })
+    .catch((err) => {
+      alert('Issue updating');
     });
 }
 
